@@ -45,7 +45,6 @@ function mainMenu(){
                     'Add a department',
                     'Add a role',
                     'Update employee role',
-                    'Delete an employee',
                     'EXIT'
                     ]
             }).then(function (answer) {
@@ -71,9 +70,6 @@ function mainMenu(){
                     case 'Update employee role':
                         updateRole();
                         break;
-                    case 'Delete an employee':
-                        deleteEmployee();
-                        break;
                     case 'EXIT': 
                         exitApp();
                         break;
@@ -83,4 +79,47 @@ function mainMenu(){
         })
 };
 
+function viewEmployees(){
+    mainMenu();
+}
 
+function viewDepartments(){
+    mainMenu();
+}
+
+function viewRoles(){
+    mainMenu();
+}
+
+
+function addEmployee(){
+    mainMenu();
+}
+
+
+function addDepartment(){
+    mainMenu();
+}
+
+function addRole(){
+    mainMenu();
+}
+
+
+function updateRole(){
+    mainMenu();
+}
+
+
+function exitApp(){
+    db.end();
+}
+
+
+
+
+function init(){
+    mainMenu();
+}
+
+init();
