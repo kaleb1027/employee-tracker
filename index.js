@@ -16,4 +16,71 @@ THEN I am prompted to enter the employee’s first name, last name, role, and ma
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database */
 
+const inquirer = require('inquirer');
+const mysql = require('mysql2');
+const cTable = require('console.table');
+
+const db = mysql.createConnection(
+    {
+        host: 'localhost',
+        user: 'root',
+        password: 'rootroot',
+        database: 'employees_db'
+    },
+
+console.log('Connected to the employees_db database')
+);
+
+function mainMenu(){
+    inquirer
+        .prompt({
+            name: 'choice',
+            type: 'list',
+            message: 'Welcome to our employee database! What would you like to do?',
+            choices: [
+                    'View all employees',
+                    'View all departments',
+                    'View all roles',
+                    'Add an employee',
+                    'Add a department',
+                    'Add a role',
+                    'Update employee role',
+                    'Delete an employee',
+                    'EXIT'
+                    ]
+            }).then(function (answer) {
+                switch (answer.choice) {
+                    case 'View all employees':
+                        viewEmployees();
+                        break;
+                    case 'View all departments':
+                        viewDepartments();
+                        break;
+                    case 'View all roles':
+                        viewRoles();
+                        break;
+                    case 'Add an employee':
+                        addEmployee();
+                        break;
+                    case 'Add a department':
+                        addDepartment();
+                        break;
+                    case 'Add a role':
+                        addRole();
+                        break;
+                    case 'Update employee role':
+                        updateRole();
+                        break;
+                    case 'Delete an employee':
+                        deleteEmployee();
+                        break;
+                    case 'EXIT': 
+                        exitApp();
+                        break;
+                    default:
+                        break;
+                }
+        })
+};
+
 
