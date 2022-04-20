@@ -111,8 +111,39 @@ function viewRoles(){
 
 
 function addEmployee(){
-    db.query(`SELECT * FROM employee`, function )
-    mainMenu();
+    inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the employee's first name?",
+        name: "first",
+      },
+      {
+        type: "input",
+        message: "What is the employee's last name?",
+        name: "last",
+      },
+      {
+        type: "input",
+        message: "What is the employee's role?",
+        name: "role",
+      },
+      {
+        type: "input",
+        message: "What is their manager ID (if any)",
+        name: "manager",
+      },
+    ])
+    .then(function (answer) {
+        db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id)
+        VALUES (?,?,?,?)`,
+         [answer.first, answer.last, answer.role, answer.manager],
+         function (err){
+             if (err) throw err;
+             console.table(answer);
+             mainMenu();
+         })
+    })
 }
 
 
@@ -153,7 +184,7 @@ function addRole(){
       },
       {
         type: "input",
-        message: "What department does the role belong to?",
+        message: "What is the department ID for the role?",
         name: "dep",
       },
     ])
