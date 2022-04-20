@@ -111,6 +111,7 @@ function viewRoles(){
 
 
 function addEmployee(){
+    db.query(`SELECT * FROM employee`, function )
     mainMenu();
 }
 
@@ -137,7 +138,7 @@ function addDepartment(){
 }
 
 function addRole(){
-    viewRoles();
+    
     inquirer
     .prompt([
       {
@@ -158,9 +159,15 @@ function addRole(){
     ])
     .then(function (answer) {
         db.query(`INSERT INTO role (title, salary, department_id)
-        VALUES`)
+        VALUES (?,?,?)`,
+         [answer.role, answer.salary, answer.dep],
+         function (err){
+             if (err) throw err;
+             console.table(answer);
+             mainMenu();
+         })
     })
-    mainMenu();
+    
 }
 
 
