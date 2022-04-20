@@ -80,15 +80,33 @@ function mainMenu(){
 };
 
 function viewEmployees(){
-    mainMenu();
+    const placehold = `SELECT * FROM employee
+    INNER JOIN role on role.id = employee.role_id
+    INNER JOIN department on department.id = role.id;`
+    db.query(`${placehold}`, function (err, results){
+        console.table(results)
+        mainMenu();
+    })
+    
 }
 
 function viewDepartments(){
-    mainMenu();
+    db.query(`SELECT * FROM department;`, function(err, result){
+        console.table(result);
+        mainMenu();
+    })
+    
 }
 
 function viewRoles(){
-    mainMenu();
+    const placehold = `SELECT role.title, role.salary, department.name
+    FROM department
+    INNER JOIN role ON role.department_id = department.id;`
+    db.query(`${placehold}`, function (err, results){
+        console.table(results)
+        mainMenu();
+    })
+    
 }
 
 
@@ -98,10 +116,50 @@ function addEmployee(){
 
 
 function addDepartment(){
-    mainMenu();
+    inquirer
+        .prompt({
+            name: "name",
+            type: "input",
+            message: "What Department would you like to add?",
+        })
+        .then(function(answer){
+            db.query(`INSERT INTO department SET ?`, 
+            {
+                name: answer.name
+            },
+            function(err){
+                if (err) throw err
+                console.table(answer)
+                mainMenu();
+            })
+        })
+    
 }
 
 function addRole(){
+    viewRoles();
+    inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the name of the role?",
+        name: "role",
+      },
+      {
+        type: "input",
+        message: "What is the salary of the role?",
+        name: "salary",
+      },
+      {
+        type: "input",
+        message: "What department does the role belong to?",
+        name: "dep",
+      },
+    ])
+    .then(function (answer) {
+        db.query(`INSERT INTO role (title, salary, department_id)
+        VALUES`)
+    })
     mainMenu();
 }
 
