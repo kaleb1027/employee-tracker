@@ -12,7 +12,6 @@
   ## Table of Contents
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Application](#application)
   - [License](#license)
   - [Contributing](#contributing)
   - [Credits](#credits)
@@ -25,7 +24,7 @@
 
   ## Usage
 
-  Video walkthrough link:
+  Video walkthrough link: https://drive.google.com/file/d/1xPP5sNZhjdHAjEzl4xTSneipjfT6uknF/view?usp=sharing
   
   
   ## License
