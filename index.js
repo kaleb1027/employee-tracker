@@ -80,9 +80,7 @@ function mainMenu(){
 };
 
 function viewEmployees(){
-    const placehold = `SELECT * FROM employee
-    INNER JOIN role on role.id = employee.role_id
-    INNER JOIN department on department.id = role.id;`
+    const placehold = `SELECT * FROM employee INNER JOIN role on role.id = employee.role_id INNER JOIN department on department.id = role.department_id;`
     db.query(`${placehold}`, function (err, results){
         console.table(results)
         mainMenu();
@@ -202,9 +200,49 @@ function addRole(){
 }
 
 
-function updateRole(){
-    mainMenu();
-}
+function updateRole() {
+    db.query("SELECT * FROM employee", function (err, res) {
+      if (err) throw err;
+      const employeeNames = res.map(e => ({
+        name: `${e.first_name} ${e.last_name}`, value: e.id
+      }))
+  
+      db.query("SELECT * FROM role", function (err, res) {
+        if (err) throw err;
+        var newRole = res.map(r => ({
+          name: `${r.title}`, value: r.id
+        }))
+  
+        inquirer
+          .prompt([
+            {
+              type: "list",
+              name: "employee",
+              message: "Select employee to update.",
+              choices: employeeNames
+            },
+            {
+              type: "list",
+              name: "role",
+              message: "Select the new role.",
+              choices: newRole
+            }
+          ])
+          .then(({employee, role}) => {
+            db.query("update employee SET role_id = ? WHERE id = ?", [role, employee], function (err, data) {
+              if (err) throw err;
+              mainMenu();
+            } )
+          })
+      })
+    })
+  }
+  
+    
+    
+    
+    
+
 
 
 function exitApp(){
