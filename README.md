@@ -27,10 +27,7 @@
 
   Video walkthrough link:
   
-  ## Application
- ![localhost_3001_notes](https://user-images.githubusercontent.com/88510725/163471684-69f95a5d-7397-420d-97ee-d2ad0a942bdc.png)
- 
- 
+  
   ## License
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   MIT License
@@ -51,14 +48,16 @@
 
   https://opensource.org/licenses/MIT
   
-  
+
 
   ## Contributing
 
   If you want to contribute to this project, email me at kaleb1027@gmail.com
+  
 
   ## Credits
   https://github.com/CallMeIce, https://github.com/kgiunta, and https://github.com/dev-dominick
+  
 
   ## Questions
   If you have any questions, you can reach me at kaleb1027@gmail.com or [kaleb1027 on github]("https://github.com/kaleb1027").
